@@ -1,39 +1,123 @@
-HEAD
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+Prerequisites
+Node.js (v16 or higher)
+npm or yarn
+TypeScript (included in dependencies)
 
-## Getting Started
+Installation
+git clone https://github.com/ab3d1/REMWaste_React_Challenge
+cd skip-hire-app
+npm install
 
-First, run the development server:
-
-```bash
+Development
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Runs the app in development mode at http://localhost:3000
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Production Build
+npm run build
+npm start
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Testing
+npm test
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Dependencies
+Core Dependencies
+next	^13.x	React framework
+react	^18.x	UI library
+react-dom	^18.x	React DOM rendering
+typescript	^5.x	Type checking
+axios	^1.x	HTTP client
+Dev Dependencies
+Package	Version	Purpose
+@types/react	^18.x	Type definitions
+@types/node	^20.x	Node types
+eslint	^8.x	Code linting
+prettier	^3.x	Code formatting
 
-## Learn More
+Key Design Decisions
+1. TypeScript Implementation
+Why: Strong typing reduces runtime errors and improves developer experience
+Implementation:
+Interfaces for all props and API responses
+Strict null checking enabled
+Type-safe hooks and components
 
-To learn more about Next.js, take a look at the following resources:
+2. State Management
+Why: Local state sufficient for current requirements
+Implementation:
+useState for component state
+useReducer would be considered for more complex state
+Context API prepared for future expansion
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+3. API Handling
+Why: Robust data fetching with proper error states
+Implementation:
+Axios for HTTP requests
+Three-state pattern (loading/success/error)
+Fallback data when API fails
+Response validation
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+4. Performance Optimization
+Why: Ensure smooth user experience
+Implementation:
+React.memo for component memoization
+useCallback for stable function references
+useMemo for expensive calculations
+Dynamic imports for code splitting
 
-## Deploy on Vercel
+5. Responsive Design
+Why: Support all device sizes
+Implementation:
+Mobile-first CSS approach
+CSS Grid with responsive breakpoints
+Viewport-aware rendering
+Touch-optimized interactions
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+6. Accessibility
+Why: Inclusive design
+Implementation:
+Semantic HTML
+ARIA attributes
+Keyboard navigation
+Color contrast checking
+Focus management
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Technical Deep Dive
+Component Architecture
+App
+└── SkipSelectionPage (Container)
+    ├── SkipCard (Presentational)
+    ├── LoadingSpinner (State)
+    └── ErrorMessage (State)
+    
+Data Flow
+Component mounts → Fetch API data
+While loading → Show spinner
+On success → Render skips
+On error → Show error message with retry
+User selection → Update state
 
-# REMWaste_React_Challenge
+Error Handling Strategy
+Network errors
+Empty responses
+Malformed data
+Fallback mechanism
+User-friendly messages
+
+Styling System
+CSS Variables for theming
+BEM-like naming convention
+Scoped styles with CSS Modules
+Responsive units (clamp, vw, etc.)
+Transition animations
+
+Tradeoffs Considered
+State Management:
+Chose useState over Redux as complexity didn't justify it
+Prepared for migration to Zustand if needed
+Styling:
+CSS Modules over styled-components for smaller bundle
+Global variables for consistent theming
+API Layer:
+Client-side fetching for simplicity
+
+Could implement SSR with getServerSideProps if SEO needed
