@@ -1,0 +1,38 @@
+:root {
+  /* Brand Colors */
+  --primary-color: #EE075C;       /* Main CTA (buttons, primary actions) */
+  --primary-hover: #FC84B4;       /* Hover state (lighter accent) */
+  --primary-active: #800331;      /* Active/pressed state (darker shade) */
+
+  /* Neutral Colors */
+  --neutral-text: #3C3434;        /* Headers, primary text (dark-grey) */
+  --neutral-secondary: #848484;   /* Body/secondary text (mid-grey) */
+  --neutral-border: #D3AFBF;      /* Borders, dividers (light-grey) */
+  --neutral-bg: #F9F2F5;          /* Light background (derived from light-grey) */
+
+  /* Status Colors */
+  --success-color: #16B364;       /* Success messages, confirmations */
+  --error-color: #CD1C18;         /* Errors, warnings */
+
+  /* UI Utilities */
+  --shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  --border-radius: 8px;
+  --transition: all 0.3s ease;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: var(--text-primary);
+  line-height: 1.5;
+}
+
+button {
+  cursor: pointer;
+  font-family: inherit;
+}
